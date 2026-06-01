@@ -7,7 +7,6 @@
 
 """Jobs."""
 
-
 from invenio_jobs.jobs import JobType, PredefinedArgsSchema
 from invenio_jobs.models import Job
 from marshmallow.fields import String
@@ -17,6 +16,12 @@ from .tasks import import_records
 
 class MoodlePredefinedArgsSchema(PredefinedArgsSchema):
     """Moodle predefined args schema."""
+
+    job_arg_schema = String(
+        metadata={"type": "hidden"},
+        dump_default="MoodlePredefinedArgsSchema",
+        load_default="MoodlePredefinedArgsSchema",
+    )
 
     dry_run = String(
         metadata={
